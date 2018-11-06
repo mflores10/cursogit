@@ -48,7 +48,7 @@ db.collection("users").onSnapshot((querySnapshot) => {
               <td>${doc.data().last}</td>
               <td>${doc.data().born}</td>
               <td><button type="button" class="btn btn-danger" onclick="eliminarUsuario('${doc.id}')">Eliminar</button></td>
-              <td><button type="button" class="btn btn-warning">Actualizar</button></td>
+              <td><button type="button" class="btn btn-warning" onclick="actualizarUsuario('${doc.id}', '${doc.data().first}', '${doc.data().last}', '${doc.data().born}')">Actualizar</button></td>
             </tr>
         `;
     });
@@ -60,6 +60,44 @@ function eliminarUsuario(id){
 	}).catch(function(error) {
 	    console.error("Error removing document: ", error);
 	});
+}
+
+
+
+// Actualizar
+
+function actualizarUsuario(id, nombre, apellido, fecha){
+	document.getElementById('nombre').value = nombre;
+	document.getElementById('apellido').value = apellido;
+	document.getElementById('fecha').value = fecha;
+
+	var boton = document.getElementById('boton');
+	boton.innerHTML = 'Editar';
+
+	boton.onclick = function(){
+	
+		var washingtonRef = db.collection('users').doc(id);
+		var nombre = document.getElementById('nombre').value;
+		var apellido = document.getElementById('apellido').value;
+		var fecha = document.getElementById('fecha').value;
+		
+		return washingtonRef.update({
+		    first: nombre,
+		    last: apellido,
+		    born: fecha
+		})
+		.then(function() {
+		    console.log("Document successfully updated!");
+		    boton.innerHTML = 'Guardar';
+		    limpiarUsuario();
+		})
+		.catch(function(error) {
+		    // The document probably doesn't exist.
+		    console.error("Error updating document: ", error);
+		});	
+	}
+
+	
 }
 
 
