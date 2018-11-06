@@ -25,7 +25,23 @@
         <input class="form-control my-3" type="text" id="nombre" placeholder="Nombre">
         <input class="form-control my-3" type="text" id="apellido" placeholder="Apellido">
         <input class="form-control my-3" type="text" id="fecha" placeholder="Fecha">
-        <button id="boton" type="button" class="btn btn-primary btn-lg btn-block " onclick="guardarUsuario()">Guardar</button>
+        <button id="boton" type="button" class="btn btn-primary btn-lg btn-block form-control my-3" " onclick="guardarUsuario()">Guardar</button>
+
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellido</th>
+              <th scope="col">Año</th>
+            </tr>
+          </thead>
+          <tbody id="tabla">
+            
+          </tbody>
+        </table>
+
 
     </div>
     
