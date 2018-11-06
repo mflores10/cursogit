@@ -47,10 +47,20 @@ db.collection("users").onSnapshot((querySnapshot) => {
               <td>${doc.data().first}</td>
               <td>${doc.data().last}</td>
               <td>${doc.data().born}</td>
+              <td><button type="button" class="btn btn-danger" onclick="eliminarUsuario('${doc.id}')">Eliminar</button></td>
+              <td><button type="button" class="btn btn-warning">Actualizar</button></td>
             </tr>
         `;
     });
 });
+
+function eliminarUsuario(id){
+	db.collection("users").doc(id).delete().then(function() {
+	    console.log("Document successfully deleted!");
+	}).catch(function(error) {
+	    console.error("Error removing document: ", error);
+	});
+}
 
 
 
